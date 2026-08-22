@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', 'Fraunces Fallback', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* near-black navy canvas */
+  --background: #050b12;
+  --foreground: #e6eff6;
+
+  /* elevated surface */
+  --card: #0a141f;
+  --card-foreground: #e6eff6;
+
+  /* teal / mint = implemented, primary */
+  --primary: #2dd4bf;
+  --primary-foreground: #04161a;
+
+  /* blue = secondary accent */
+  --secondary: #4c8dff;
+  --secondary-foreground: #04101f;
+
+  /* muted gray-blue = planned / future */
+  --muted: #17293a;
+  --muted-foreground: #5b7186;
+  --accent: #5b7186;
+  --accent-foreground: #e8f1f8;
+
+  /* caution */
+  --warning: #ffb020;
+  --warning-foreground: #1c1204;
+  --destructive: #ff6b6b;
+
+  --border: #1d3346;
+  --input: #1d3346;
+  --ring: #2dd4bf;
+
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+}
+
+@layer utilities {
+  .glow-teal {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 22%, transparent),
+      0 18px 60px -24px color-mix(in oklab, var(--primary) 45%, transparent);
+  }
+  .glow-blue {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--secondary) 22%, transparent),
+      0 18px 60px -24px color-mix(in oklab, var(--secondary) 45%, transparent);
+  }
+  .surface {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--card) 92%, white 8%) 0%,
+      var(--card) 100%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
